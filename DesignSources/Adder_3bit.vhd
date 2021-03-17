@@ -3,8 +3,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity Adder_3bit is
     Port ( ClockSig : in STD_LOGIC;
-    A : in STD_LOGIC_VECTOR (2 downto 0);
-    X : out STD_LOGIC_VECTOR (2 downto 0));
+           A : in STD_LOGIC_VECTOR (2 downto 0);
+           X : out STD_LOGIC_VECTOR (2 downto 0));
 end Adder_3bit;
 
 architecture Behavioral of Adder_3bit is
