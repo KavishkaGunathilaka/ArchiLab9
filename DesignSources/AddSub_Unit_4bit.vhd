@@ -11,7 +11,6 @@ entity AddSub_Unit_4bit is
            S : out STD_LOGIC_VECTOR (3 downto 0));
 end AddSub_Unit_4bit;
 
-
 architecture Behavioral of AddSub_Unit_4bit is
     component FA
         port (
