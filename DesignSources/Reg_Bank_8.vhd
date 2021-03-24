@@ -42,13 +42,15 @@ begin
             En => '1',
             Y => Y);
                 
-    REG_0 : REG_4Bit
-        port map (  
-            D_In => Data_In,  
-            D_Out => Data_Out_0,
-            Reset => Reset,
-            En => Y(0),
-            Clk => Clk);
+--    REG_0 : REG_4Bit
+--        port map (  
+--            D_In => Data_In,  
+--            D_Out => Data_Out_0,
+--            Reset => Reset,
+--            En => Y(0),
+--            Clk => Clk);
+
+    Data_Out_0 <= "0000";
     
     REG_1 : REG_4Bit
         port map (  
