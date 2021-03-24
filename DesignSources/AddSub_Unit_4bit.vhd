@@ -4,7 +4,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity AddSub_Unit_4bit is
     Port ( A : in STD_LOGIC_VECTOR (3 downto 0);
            B : in STD_LOGIC_VECTOR (3 downto 0);
-           CalCtrl : in STD_LOGIC;
+           Ctrl : in STD_LOGIC;
            C_out : out STD_LOGIC;
            Overflow : out STD_LOGIC;
            Zero : out STD_LOGIC;
@@ -25,16 +25,16 @@ architecture Behavioral of AddSub_Unit_4bit is
     SIGNAL FA0_S, FA0_C, FA1_S, FA1_C, FA2_S, FA2_C, FA3_S, FA3_C : std_logic;
     
     begin
-        B_in(0) <= B(0) XOR CalCtrl;
-        B_in(1) <= B(1) XOR CalCtrl;
-        B_in(2) <= B(2) XOR CalCtrl;
-        B_in(3) <= B(3) XOR CalCtrl;
+        B_in(0) <= B(0) XOR Ctrl;
+        B_in(1) <= B(1) XOR Ctrl;
+        B_in(2) <= B(2) XOR Ctrl;
+        B_in(3) <= B(3) XOR Ctrl;
         
         FA_0 : FA
             port map (
                 A => A(0),
                 B => B_in(0),
-                C_in => CalCtrl,
+                C_in => Ctrl,
                 S => S_out(0),
                 C_Out => FA0_C);
                 
@@ -62,7 +62,7 @@ architecture Behavioral of AddSub_Unit_4bit is
                 S => S_out(3),
                 C_Out => C_out);
                 
-        Overflow <= (A(3) XNOR (CalCtrl XOR B(3))) AND (A(3) XOR S_out(3));
+        Overflow <= (A(3) XNOR (Ctrl XOR B(3))) AND (A(3) XOR S_out(3));
         
         S(0) <= S_out(0);
         S(1) <= S_out(1);
