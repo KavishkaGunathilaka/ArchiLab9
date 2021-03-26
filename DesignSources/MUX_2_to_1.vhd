@@ -14,6 +14,6 @@ begin
     
   with S select
   Q <= D(0) when '0',
-       D(1) when '1';
+       D(1) when others;
         
 end Behavioral;

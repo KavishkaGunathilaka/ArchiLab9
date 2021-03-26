@@ -1,112 +1,84 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date: 11/08/2018 02:56:56 PM
--- Design Name: 
--- Module Name: TB_MUX_8way_4bit - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
-----------------------------------------------------------------------------------
-
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
-entity TB_MUX_8way_4bit is
+entity TB_MUX_8Way_4Bit is
 --  Port ( );
-end TB_MUX_8way_4bit;
+end TB_MUX_8Way_4Bit;
 
-architecture Behavioral of TB_MUX_8way_4bit is
+architecture Behavioral of TB_MUX_8Way_4Bit is
 
-COMPONENT MUX_8way_4bit
-Port ( Reg0 : in STD_LOGIC_VECTOR (3 downto 0);
-       Reg1 : in STD_LOGIC_VECTOR (3 downto 0);
-       Reg2 : in STD_LOGIC_VECTOR (3 downto 0);
-       Reg3 : in STD_LOGIC_VECTOR (3 downto 0);
-       Reg4 : in STD_LOGIC_VECTOR (3 downto 0);
-       Reg5 : in STD_LOGIC_VECTOR (3 downto 0);
-       Reg6 : in STD_LOGIC_VECTOR (3 downto 0);
-       Reg7 : in STD_LOGIC_VECTOR (3 downto 0);
-       EN : in STD_LOGIC;
-       RegSel : in STD_LOGIC_VECTOR (2 downto 0);
-       Output : out STD_LOGIC_VECTOR (3 downto 0));
-END COMPONENT;
+    Component MUX_8Way_4Bit
+    Port ( S : in STD_LOGIC_VECTOR (2 downto 0);
+           En : in STD_LOGIC;
+           Q : out STD_LOGIC_VECTOR (3 downto 0);
+           D0 : in STD_LOGIC_VECTOR (3 downto 0);
+           D1 : in STD_LOGIC_VECTOR (3 downto 0);
+           D2 : in STD_LOGIC_VECTOR (3 downto 0);
+           D3 : in STD_LOGIC_VECTOR (3 downto 0);
+           D4 : in STD_LOGIC_VECTOR (3 downto 0);
+           D5 : in STD_LOGIC_VECTOR (3 downto 0);
+           D6 : in STD_LOGIC_VECTOR (3 downto 0);
+           D7 : in STD_LOGIC_VECTOR (3 downto 0));
+    End component;
 
-SIGNAL reg0,reg1,reg2,reg3,reg4,reg5,reg6,reg7 : STD_LOGIC_VECTOR (3 downto 0);
-SIGNAL regsel : STD_LOGIC_VECTOR (2 downto 0);
-SIGNAL en : STD_LOGIC;
-SIGNAL output : STD_LOGIC_VECTOR (3 downto 0);
+    Signal D0,D1,D2,D3,D4,D5,D6,D7 : STD_LOGIC_VECTOR (3 downto 0);
+    Signal S : STD_LOGIC_VECTOR (2 downto 0);
+    Signal En : STD_LOGIC;
+    Signal Q : STD_LOGIC_VECTOR (3 downto 0);
 
 begin
 
-UUT : MUX_8way_4bit port map(
-Reg0 => reg0,
-Reg1 => reg1,
-Reg2 => reg2,
-Reg3 => reg3,
-Reg4 => reg4,
-Reg5 => reg5,
-Reg6 => reg6,
-Reg7 => reg7,
-RegSel => regsel,
-EN => en,
-Output => output
-);
-
-process
-begin
-reg0 <= "1000";
-reg1 <= "1001";
-reg2 <= "0010";
-reg3 <= "0011";
-reg4 <= "0100";
-reg5 <= "0101";
-reg6 <= "0110";
-reg7 <= "0111";
-en <= '1';
-
-regsel <="000";
-
-wait for 100 ns;
-regsel <="001";
-
-wait for 100 ns;
-regsel <="010";
-
-wait for 100 ns;
-regsel <="011";
-
-wait for 100 ns;
-regsel <="100";
-
-wait for 100 ns;
-regsel <="101";
-
-wait for 100 ns;
-regsel <="110";
-
-wait for 100 ns;
-regsel <="111";
-
-wait;
-end process;
+    UUT : MUX_8Way_4Bit port map(
+        S => S,
+        En => En,
+        Q => Q,
+        D0 => D0,
+        D1 => D1,
+        D2 => D2,
+        D3 => D3,
+        D4 => D4,
+        D5 => D5,
+        D6 => D6,
+        D7 => D7
+    );
+    
+    process begin
+        -- Index no: 190205 --> 10 1110 0110 1111 1101
+        D0 <= "1101";
+        D1 <= "1111";
+        D2 <= "0110";
+        D3 <= "1110";
+        -- Index no: 190482 --> 10 1110 1000 0001 0010
+        D4 <= "0010";
+        D5 <= "0001";
+        D6 <= "1000";
+        D7 <= "0010";
+        En <= '1';
+        
+        S <="000";
+        wait for 100 ns;
+        
+        S <="001";
+        wait for 100 ns;
+        
+        S <="010";       
+        wait for 100 ns;
+        
+        S <="011";        
+        wait for 100 ns;
+        
+        S <="100";        
+        wait for 100 ns;
+        
+        S <="101";       
+        wait for 100 ns;
+        
+        S <="110";      
+        wait for 100 ns;
+        
+        S <="111";
+        wait for 100ns;
+        wait;
+        
+    end process;
 end Behavioral;
