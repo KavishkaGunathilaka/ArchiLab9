@@ -1,7 +1,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-
 entity Reg_Bank_8 is
     Port ( Data_In : in STD_LOGIC_VECTOR (3 downto 0);
            Clk : in STD_LOGIC;
