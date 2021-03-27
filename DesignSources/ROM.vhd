@@ -13,14 +13,14 @@ architecture Behavioral of ROM_8 is
     type rom_type is array (0 to 7) of std_logic_vector(11 downto 0);
 
     signal Program_ROM : rom_type := (
-        "1000000", -- instruction 0
-        "1111001", -- instruction 1
-        "0100100", -- instruction 2
-        "0110000", -- instruction 3
-        "0011001", -- instruction 4
-        "0010010", -- instruction 5
-        "0000010", -- instruction 6
-        "1111000" -- instruction 7
+        "000000000001", -- instruction 0
+        "000000000010", -- instruction 1
+        "000000000011", -- instruction 2
+        "000000000100", -- instruction 3
+        "000000000101", -- instruction 4
+        "000000000110", -- instruction 5
+        "000000000111", -- instruction 6
+        "000000001000" -- instruction 7
     );
      
 begin
