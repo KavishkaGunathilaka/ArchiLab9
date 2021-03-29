@@ -24,34 +24,38 @@ architecture Behavioral of Instruction_Decoder is
             Y: out std_logic_vector(3 downto 0));
         end component;
     
-    Signal add, neg, movl, jzr : std_logic;
-    Signal not_jzr : std_logic;
-    
 begin
     
-    Decoder_2_to_4_0 : Decoder_2_to_4
-        port map (
-        I(0) => Instruction(10),
-        I(1) => Instruction(11),
-        EN => '1',
-        Y(0)=> add,
-        Y(1) => neg,
-        Y(2) => movl,
-        Y(3) => jzr);
-        
-    LoadSelect <= movl;
-    AddSubSelect <= neg;
-    JMPFlag <= jzr and  (not (CheckJMP(0) or CheckJMP(1) or CheckJMP(2) or CheckJMP(0)));
-    JMPAddress <= Instruction (2 downto 0);
+    process(Instruction) 
+    begin
     
-    not_jzr <= add or neg or movl;
-    RegEnable(0) <= not_jzr and Instruction(7);
-    RegEnable(1) <= not_jzr and Instruction(8);
-    RegEnable(2) <= not_jzr and Instruction(9);
-    ImmediateVal <= Instruction (3 downto 0);
-    
-    RegSelect1 <= Instruction (9 downto 7);
-    RegSelect2 <= Instruction (6 downto 4);
+        RegSelect1 <= Instruction (9 downto 7);
+        RegSelect2 <= Instruction (6 downto 4);
+        ImmediateVal <= Instruction (3 downto 0);
+        RegEnable <= Instruction(9 downto 7);
+        JMPAddress <= Instruction (2 downto 0); 
+       
+        case Instruction(11 downto 10) is
+            -- Add
+            when "00" =>   
+                AddSubSelect <= '0';
+                LoadSelect <= '0';
+            -- NEG
+            when "01" =>
+                AddSubSelect <= '1';
+                LoadSelect <= '0';
+            -- MOVL
+            when "10" =>
+                LoadSelect <= '1';
+            when others =>
+                AddSubSelect <= '0';
+                LoadSelect <= '0';
+                case CheckJMP is
+                    when "0000" => JMPFlag <= '1';
+                    when others => JMPFlag <= '0';
+                end case;
+        end case;
+  end process;
 
 end Behavioral;
     
