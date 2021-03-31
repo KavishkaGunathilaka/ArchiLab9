@@ -15,6 +15,7 @@ architecture Behavioral of REG_4Bit is
        D : in STD_LOGIC;
        Res : in STD_LOGIC;
        Clk : in STD_LOGIC;
+       En : in STD_LOGIC;
        Q : out STD_LOGIC;
        Qbar : out STD_LOGIC);  
     end component;
@@ -23,34 +24,38 @@ architecture Behavioral of REG_4Bit is
     
 begin
     
-    Clock <= Clk AND En;
+--    Clock <= Clk AND En;
     
     DFF_0 : D_FF
         port map (  
             D => D_In(0),  
             Res => Reset,
-            Clk => Clock,
+            Clk => Clk,
+            En => En,
             Q => D_Out(0)); 
 
     DFF_1 : D_FF
         port map (  
             D => D_In(1),     
             Res => Reset,        
-            Clk => Clock, 
+            Clk => Clk,
+            En => En, 
             Q => D_Out(1));
             
     DFF_2 : D_FF
         port map (  
             D => D_In(2),     
             Res => Reset,        
-            Clk => Clock,
+            Clk => Clk,
+            En => En,
             Q => D_Out(2));
             
     DFF_3 : D_FF
         port map (  
             D => D_In(3),  
             Res => Reset,
-            Clk => Clock,
+            Clk => Clk,
+            En => En,
             Q => D_Out(3)); 
 
 end Behavioral;

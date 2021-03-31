@@ -14,6 +14,7 @@ architecture Behavioral of PC is
        D : in STD_LOGIC;
        Res : in STD_LOGIC;
        Clk : in STD_LOGIC;
+       En : in STD_LOGIC;
        Q : out STD_LOGIC;
        Qbar : out STD_LOGIC);  
     end component;
@@ -24,14 +25,16 @@ begin
         port map (  
             D => Address(0),  
             Res => Reset,
-            Clk => Clk, -- Set to ground
+            Clk => Clk,
+            En => '1',
             Q => MemorySelect(0)); 
 
     DFF_1 : D_FF
         port map (  
             D => Address(1),     
             Res => Reset,        
-            Clk => Clk, 
+            Clk => Clk,
+            En => '1', 
             Q => MemorySelect(1));
             
     DFF_2 : D_FF
@@ -39,6 +42,7 @@ begin
             D => Address(2),     
             Res => Reset,        
             Clk => Clk,
+            En => '1',
             Q => MemorySelect(2));
 
 end Behavioral;

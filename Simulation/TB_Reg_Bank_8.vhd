@@ -9,17 +9,17 @@ end TB_Reg_Bank_8;
 architecture Behavioral of TB_Reg_Bank_8 is
     Component Reg_Bank_8
     Port ( Data_In : in STD_LOGIC_VECTOR (3 downto 0);
-               Clk : in STD_LOGIC;
-               Reset : in STD_LOGIC;
-               Data_Out_0 : out STD_LOGIC_VECTOR (3 downto 0);
-               Data_Out_1 : out STD_LOGIC_VECTOR (3 downto 0);
-               Data_Out_2 : out STD_LOGIC_VECTOR (3 downto 0);
-               Data_Out_3 : out STD_LOGIC_VECTOR (3 downto 0);
-               Data_Out_4 : out STD_LOGIC_VECTOR (3 downto 0);
-               Data_Out_5 : out STD_LOGIC_VECTOR (3 downto 0);
-               Data_Out_6 : out STD_LOGIC_VECTOR (3 downto 0);
-               Data_Out_7 : out STD_LOGIC_VECTOR (3 downto 0);
-               Reg_En : in STD_LOGIC_VECTOR (2 downto 0));
+           Clk : in STD_LOGIC;
+           Reset : in STD_LOGIC;
+           Data_Out_0 : out STD_LOGIC_VECTOR (3 downto 0);
+           Data_Out_1 : out STD_LOGIC_VECTOR (3 downto 0);
+           Data_Out_2 : out STD_LOGIC_VECTOR (3 downto 0);
+           Data_Out_3 : out STD_LOGIC_VECTOR (3 downto 0);
+           Data_Out_4 : out STD_LOGIC_VECTOR (3 downto 0);
+           Data_Out_5 : out STD_LOGIC_VECTOR (3 downto 0);
+           Data_Out_6 : out STD_LOGIC_VECTOR (3 downto 0);
+           Data_Out_7 : out STD_LOGIC_VECTOR (3 downto 0);
+           Reg_En : in STD_LOGIC_VECTOR (2 downto 0));
     End component;
 
 Signal Data_In, Data_Out_0, Data_Out_1, Data_Out_2, Data_Out_3, Data_Out_4, Data_Out_5, Data_Out_6, Data_Out_7 : STD_LOGIC_VECTOR (3 downto 0);

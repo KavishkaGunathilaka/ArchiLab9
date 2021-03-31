@@ -5,6 +5,7 @@ entity D_FF is
     Port ( D : in STD_LOGIC;
            Res : in STD_LOGIC;
            Clk : in STD_LOGIC;
+           En : in STD_LOGIC;
            Q : out STD_LOGIC;
            Qbar : out STD_LOGIC);
 end D_FF;
@@ -18,7 +19,7 @@ begin
             if Res = '1' then
                 Q <= '0';
                 Qbar <= '1';
-            else
+            elsif (En = '1') then
                 Q <= D;
                 Qbar <= not D;
             end if;

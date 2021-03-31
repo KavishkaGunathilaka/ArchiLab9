@@ -6,7 +6,23 @@ entity NanoProcessor is
            Reset : in STD_LOGIC;
            Overflow : out STD_LOGIC;
            Zero : out STD_LOGIC;
-           LED_Out : out STD_LOGIC_VECTOR (3 downto 0));
+           LED_Out : out STD_LOGIC_VECTOR (3 downto 0);
+           PC_Test : out STD_LOGIC_VECTOR (2 downto 0);
+           Reg0_Test : out STD_LOGIC_VECTOR (3 downto 0);
+           Reg1_Test : out STD_LOGIC_VECTOR (3 downto 0);
+           Reg2_Test : out STD_LOGIC_VECTOR (3 downto 0);
+           Reg3_Test : out STD_LOGIC_VECTOR (3 downto 0);
+           Reg4_Test : out STD_LOGIC_VECTOR (3 downto 0);
+           Reg5_Test : out STD_LOGIC_VECTOR (3 downto 0);
+           Reg6_Test : out STD_LOGIC_VECTOR (3 downto 0);
+           Reg7_Test : out STD_LOGIC_VECTOR (3 downto 0);
+           Ins_Test : out STD_LOGIC_VECTOR (11 downto 0);
+           Op0_Test : out STD_LOGIC_VECTOR (3 downto 0);
+           Op1_Test : out STD_LOGIC_VECTOR (3 downto 0);
+           Result_Test : out STD_LOGIC_VECTOR (3 downto 0);
+           RegEn_Test : out STD_LOGIC_VECTOR (2 downto 0);
+           ChkJmp_Test : out STD_LOGIC_VECTOR (3 downto 0);
+           JumpFlag_Test : out STD_LOGIC);
 end NanoProcessor;
 
 architecture Behavioral of NanoProcessor is
@@ -78,6 +94,7 @@ architecture Behavioral of NanoProcessor is
     end component;
     
     component Instruction_Decoder port(
+        Clk : in STD_LOGIC;
         Instruction : in STD_LOGIC_VECTOR (11 downto 0);
         CheckJMP : in STD_LOGIC_VECTOR (3 downto 0);
         RegEnable : out STD_LOGIC_VECTOR (2 downto 0);
@@ -87,7 +104,8 @@ architecture Behavioral of NanoProcessor is
         RegSelect2 : out STD_LOGIC_VECTOR (2 downto 0);
         AddSubSelect : out STD_LOGIC;
         JMPFlag : out STD_LOGIC;
-        JMPAddress : out STD_LOGIC_VECTOR (2 downto 0));
+        JMPAddress : out STD_LOGIC_VECTOR (2 downto 0);
+        ChkJmp_Test : out STD_LOGIC_VECTOR (3 downto 0));
     end component;
     
     component ROM_8 port(
@@ -96,7 +114,8 @@ architecture Behavioral of NanoProcessor is
     end component;
     
     
-    Signal MemorySelect, PCAddress, NextAddress, JumpAddress : std_logic_vector(2 downto 0);
+    Signal PCAddress, NextAddress, JumpAddress : std_logic_vector(2 downto 0);
+    Signal MemorySelect : std_logic_vector(2 downto 0);
     
     Signal InstructionBus : std_logic_vector(11 downto 0);                       
     Signal JumpFlag, AddSubSelect, LoadSelect : std_logic;
@@ -127,8 +146,8 @@ begin
       
     AddSubUnit : AddSub_Unit_4bit 
                     port map (  
-                        A => Operand0,
-                        B => Operand1,
+                        A => Operand1,
+                        B => Operand0,
                         Ctrl => AddSubSelect,
                         Overflow => Overflow,
                         Zero => Zero,
@@ -192,6 +211,7 @@ begin
 
     InstructionDecoder : Instruction_Decoder
                             port map (  
+                                Clk => Clk,
                                 Instruction => InstructionBus,
                                 CheckJMP => Operand0,
                                 RegEnable => RegEnable,
@@ -201,6 +221,7 @@ begin
                                 RegSelect2 => RegisterSelect1,
                                 AddSubSelect => AddSubSelect,
                                 JMPFlag => JumpFlag,
+                                ChkJmp_Test => ChkJmp_Test,
                                 JMPAddress => JumpAddress);
 
     ROM : ROM_8
@@ -209,5 +230,21 @@ begin
                 Instruction_Bus => InstructionBus);
                 
     LED_Out <= D7;
+    
+    PC_Test <= MemorySelect;
+    Reg0_Test <= D0;
+    Reg1_Test <= D1;
+    Reg2_Test <= D2;
+    Reg3_Test <= D3;   
+    Reg4_Test <= D4;
+    Reg5_Test <= D5;
+    Reg6_Test <= D6;
+    Reg7_Test <= D7;    
+    Ins_Test <= InstructionBus;
+    JumpFlag_Test <= JumpFlag;
+    Result_Test <= RegBankDataIn;
+    Op0_Test <= Operand0;
+    Op1_Test <= Operand1;
+    RegEn_Test <= RegEnable;
              
 end Behavioral;

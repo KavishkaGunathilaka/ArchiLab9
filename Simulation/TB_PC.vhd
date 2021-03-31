@@ -19,7 +19,7 @@ architecture Behavioral of TB_PC is
 
 
 begin
-clock_process : process
+    clock_process : process
     begin
         Clk <= '0';
         wait for clock_period/2;
@@ -37,31 +37,26 @@ clock_process : process
     
     
         process begin
-        
- 
-        
-        -- Index no: 190482 --> 10 1110 1000 0001 0010
-        Address <= "010";
-       
-        wait for 100 ns;--ans: Cout = 0 | S = 0011
-        
-        Address <= "100";
-
-        wait for 100 ns;--ans: Cout = 1 | S = 0110
-        
-        Address <= "111";
-        wait for 100 ns;---ans: Cout = 1 | S = 1110
-        
-        Address <= "000";
-        wait for 100 ns;---ans: Cout = 0 | S = 0000
-        
-        Address<= "001";       
-        wait for 100 ns;---ans: Cout = 0 | S = 1101
-        
-        wait;
-
-    end process;
+            -- Index no: 190482 --> 10 1110 1000 0001 0010
+            Address <= "010";
+           
+            wait for 100 ns;--ans: Cout = 0 | S = 0011
+            
+            Address <= "100";
     
+            wait for 100 ns;--ans: Cout = 1 | S = 0110
+            
+            Address <= "111";
+            wait for 100 ns;---ans: Cout = 1 | S = 1110
+            
+            Address <= "000";
+            wait for 100 ns;---ans: Cout = 0 | S = 0000
+            
+            Address<= "001";       
+            wait for 100 ns;---ans: Cout = 0 | S = 1101
+            
+            wait;
 
-
+        end process;
+    
 end Behavioral;
