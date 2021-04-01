@@ -14,6 +14,7 @@ PC
 Instruction_Decoder
 D_FF
 MUX 8 to 1
+Add/Sub
 
 TO Do:
 7 seg display
