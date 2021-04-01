@@ -25,7 +25,7 @@ architecture Behavioral of ROM_8 is
         -- MOVL R2, 4   R2 <-- 4
         "100100000100", -- instruction 4    904
         -- JZR R0       
-        "110000000010", -- instruction 5    c02 
+        "110100000010", -- instruction 5    c02 
         -- ADD R7, R1   R7 <-- -2
         "001110010000", -- instruction 6    390
         -- ADD R7, R2   R7 <-- -3

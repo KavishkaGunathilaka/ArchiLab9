@@ -15,8 +15,7 @@ architecture Behavioral of TB_Instruction_Decoder is
        RegSelect2 : out STD_LOGIC_VECTOR (2 downto 0);
        AddSubSelect : out STD_LOGIC;
        JMPFlag : out STD_LOGIC;
-       JMPAddress : out STD_LOGIC_VECTOR (2 downto 0);
-       Clk : in STD_LOGIC);
+       JMPAddress : out STD_LOGIC_VECTOR (2 downto 0));
    end component;
    
    Signal CheckJMP, ImmediateVal : STD_LOGIC_VECTOR (3 downto 0);
@@ -28,7 +27,6 @@ architecture Behavioral of TB_Instruction_Decoder is
 begin
 
     UUT : Instruction_Decoder port map(
-        Clk => Clk,
         Instruction => Instruction,
         CheckJMP => CheckJMP,
         RegEnable => RegEnable,
