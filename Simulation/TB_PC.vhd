@@ -37,24 +37,32 @@ begin
     
     
         process begin
+            Reset <= '0';
             -- Index no: 190482 --> 10 1110 1000 0001 0010
-            Address <= "010";
-           
-            wait for 100 ns;--ans: Cout = 0 | S = 0011
+            Address <= "010"; 
+            wait for 100 ns;
             
             Address <= "100";
-    
-            wait for 100 ns;--ans: Cout = 1 | S = 0110
+            wait for 100 ns;
             
             Address <= "111";
-            wait for 100 ns;---ans: Cout = 1 | S = 1110
+            wait for 100 ns;
             
             Address <= "000";
-            wait for 100 ns;---ans: Cout = 0 | S = 0000
+            wait for 100 ns;
             
             Address<= "001";       
-            wait for 100 ns;---ans: Cout = 0 | S = 1101
+            wait for 100 ns;
             
+            Reset <= '1';
+            wait for 100 ns;
+            
+            Reset <= '0';
+            Address <= "101";
+            wait for 100 ns;
+            
+            Address<= "001";       
+            wait for 100 ns;
             wait;
 
         end process;

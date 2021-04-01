@@ -52,7 +52,11 @@ clock_process : process
     );
     
         process begin
-    
+            
+            Reset <= '1';
+            wait for 50ns;
+            Reset <= '0';
+            
             Data_In <= "0101";
             Reg_En <= "001";
 
@@ -94,6 +98,7 @@ clock_process : process
 
             wait for 100 ns;
             
+            Reset <= '1';
             wait;
 
         end process;
