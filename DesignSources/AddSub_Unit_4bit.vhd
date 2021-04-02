@@ -68,8 +68,9 @@ architecture Behavioral of AddSub_Unit_4bit is
         S(3) <= S_out(3);
 
         
-        Overflow <= ((A(3) XNOR (Ctrl XOR B(3))) AND (A(3) XOR S_out(3)));
-        --Overflow <= ((A(3) XNOR (Ctrl XOR B(3))) AND (A(3) AND (Ctrl XOR B(3)))) XOR S_out(3);
+        Overflow <= '1' WHEN B_in(3) = '1' and  A(3) = '1' and S_out(3) = '0' ELSE -- overlfow wehn adding 2 negativa numbers
+                    '1' WHEN B_in(3) = '0' and  A(3) = '0' and S_out(3) = '1' ELSE -- overlfow wehn adding 2 positive numbers
+                    '0';
 
         Zero <= not (S_out(0) or S_out(1) or S_out(2) or S_out(3));
         

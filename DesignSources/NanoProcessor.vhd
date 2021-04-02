@@ -21,7 +21,6 @@ entity NanoProcessor is
            Op1_Test : out STD_LOGIC_VECTOR (3 downto 0);
            Result_Test : out STD_LOGIC_VECTOR (3 downto 0);
            RegEn_Test : out STD_LOGIC_VECTOR (2 downto 0);
-           ChkJmp_Test : out STD_LOGIC_VECTOR (3 downto 0);
            JumpFlag_Test : out STD_LOGIC);
 end NanoProcessor;
 
@@ -94,7 +93,6 @@ architecture Behavioral of NanoProcessor is
     end component;
     
     component Instruction_Decoder port(
-        Clk : in STD_LOGIC;
         Instruction : in STD_LOGIC_VECTOR (11 downto 0);
         CheckJMP : in STD_LOGIC_VECTOR (3 downto 0);
         RegEnable : out STD_LOGIC_VECTOR (2 downto 0);
@@ -104,8 +102,7 @@ architecture Behavioral of NanoProcessor is
         RegSelect2 : out STD_LOGIC_VECTOR (2 downto 0);
         AddSubSelect : out STD_LOGIC;
         JMPFlag : out STD_LOGIC;
-        JMPAddress : out STD_LOGIC_VECTOR (2 downto 0);
-        ChkJmp_Test : out STD_LOGIC_VECTOR (3 downto 0));
+        JMPAddress : out STD_LOGIC_VECTOR (2 downto 0));
     end component;
     
     component ROM_8 port(
@@ -210,8 +207,7 @@ begin
                 MemorySelect => MemorySelect);
 
     InstructionDecoder : Instruction_Decoder
-                            port map (  
-                                Clk => Clk,
+                            port map (
                                 Instruction => InstructionBus,
                                 CheckJMP => Operand0,
                                 RegEnable => RegEnable,
@@ -221,7 +217,6 @@ begin
                                 RegSelect2 => RegisterSelect1,
                                 AddSubSelect => AddSubSelect,
                                 JMPFlag => JumpFlag,
-                                ChkJmp_Test => ChkJmp_Test,
                                 JMPAddress => JumpAddress);
 
     ROM : ROM_8

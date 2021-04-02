@@ -27,7 +27,6 @@ architecture Behavioral of TB_NanoProcessor is
             Op0_Test : out STD_LOGIC_VECTOR (3 downto 0);
             Op1_Test : out STD_LOGIC_VECTOR (3 downto 0);
             Result_Test : out STD_LOGIC_VECTOR (3 downto 0);
-            ChkJmp_Test : out STD_LOGIC_VECTOR (3 downto 0);
             RegEn_Test : out STD_LOGIC_VECTOR (2 downto 0);
             JumpFlag_Test : out STD_LOGIC);
    end component;
@@ -38,7 +37,7 @@ architecture Behavioral of TB_NanoProcessor is
    
    Signal JumpFlag_Test : std_logic;
    Signal PC_Test, RegEn_Test : std_logic_vector (2 downto 0);
-   Signal Op0_Test, Op1_Test, Result_Test, ChkJmp_Test : std_logic_vector (3 downto 0);
+   Signal Op0_Test, Op1_Test, Result_Test : std_logic_vector (3 downto 0);
    Signal Ins_Test : std_logic_vector (11 downto 0);
    Signal Reg0_Test, Reg1_Test,  Reg2_Test, Reg3_Test, Reg4_Test,  Reg5_Test, Reg6_Test,  Reg7_Test: std_logic_vector (3 downto 0);
    
@@ -64,8 +63,7 @@ begin
         Result_Test => Result_Test,
         Op1_Test => Op1_Test,
         Op0_Test => Op0_Test,
-        RegEn_Test => RegEn_Test,
-        ChkJmp_Test => ChkJmp_Test
+        RegEn_Test => RegEn_Test
     );
     
     clock_process : process
