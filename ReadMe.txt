@@ -8,16 +8,14 @@ TB_NanoProcessor_7Seg
 
 Design Sources
 -------------------
-ROM
-Register
-NanoProcessor
-PC
-Instruction_Decoder
 D_FF
 MUX 8 to 1
+<<<<<<< HEAD
 Add/Sub
 NanoProcessor_7Seg
 LUT_16_7
+=======
+>>>>>>> 4782e13442e563e7d1d5a452f70206d3ad8ae837
 
 
 TO Do:
@@ -26,3 +24,7 @@ constrains
 Slow CLock
 Report
 Instruction Decoder
+
+
+ado me ithuru tike codes danna one da bn?
+man register ekath damma eeka oone na neda??
