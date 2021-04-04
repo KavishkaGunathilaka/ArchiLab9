@@ -6,22 +6,8 @@ entity NanoProcessor is
            Reset : in STD_LOGIC;
            Overflow : out STD_LOGIC;
            Zero : out STD_LOGIC;
-           LED_Out : out STD_LOGIC_VECTOR (3 downto 0);
-           PC_Test : out STD_LOGIC_VECTOR (2 downto 0);
-           Reg0_Test : out STD_LOGIC_VECTOR (3 downto 0);
-           Reg1_Test : out STD_LOGIC_VECTOR (3 downto 0);
-           Reg2_Test : out STD_LOGIC_VECTOR (3 downto 0);
-           Reg3_Test : out STD_LOGIC_VECTOR (3 downto 0);
-           Reg4_Test : out STD_LOGIC_VECTOR (3 downto 0);
-           Reg5_Test : out STD_LOGIC_VECTOR (3 downto 0);
-           Reg6_Test : out STD_LOGIC_VECTOR (3 downto 0);
-           Reg7_Test : out STD_LOGIC_VECTOR (3 downto 0);
-           Ins_Test : out STD_LOGIC_VECTOR (11 downto 0);
-           Op0_Test : out STD_LOGIC_VECTOR (3 downto 0);
-           Op1_Test : out STD_LOGIC_VECTOR (3 downto 0);
-           Result_Test : out STD_LOGIC_VECTOR (3 downto 0);
-           RegEn_Test : out STD_LOGIC_VECTOR (2 downto 0);
-           JumpFlag_Test : out STD_LOGIC);
+           LED_Out : out STD_LOGIC_VECTOR (3 downto 0)
+           );
 end NanoProcessor;
 
 architecture Behavioral of NanoProcessor is
@@ -225,21 +211,5 @@ begin
                 Instruction_Bus => InstructionBus);
                 
     LED_Out <= D7;
-    
-    PC_Test <= MemorySelect;
-    Reg0_Test <= D0;
-    Reg1_Test <= D1;
-    Reg2_Test <= D2;
-    Reg3_Test <= D3;   
-    Reg4_Test <= D4;
-    Reg5_Test <= D5;
-    Reg6_Test <= D6;
-    Reg7_Test <= D7;    
-    Ins_Test <= InstructionBus;
-    JumpFlag_Test <= JumpFlag;
-    Result_Test <= RegBankDataIn;
-    Op0_Test <= Operand0;
-    Op1_Test <= Operand1;
-    RegEn_Test <= RegEnable;
              
 end Behavioral;

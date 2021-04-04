@@ -14,17 +14,14 @@ architecture Behavioral of TB_NanoProcessor_7Seg is
            Overflow : out STD_LOGIC;
            Zero : out STD_LOGIC;
            LED_Out : out STD_LOGIC_VECTOR (3 downto 0);
-           Out_7Seg1 : out STD_LOGIC_VECTOR (6 downto 0);
-           Out_7Seg2 : out STD_LOGIC_VECTOR (6 downto 0);
-           Anode_7Seg : out STD_LOGIC_VECTOR (3 downto 0);
-           TestClock : out std_logic
+           Out_7Seg : out STD_LOGIC_VECTOR (6 downto 0);
+           Anode_7Seg : out STD_LOGIC_VECTOR (3 downto 0)
            );
    end component;
    
-   Signal Clk, Reset, Overflow, Zero, TestClock : std_logic;
+   Signal Clk, Reset, Overflow, Zero : std_logic;
    Signal LED_Out : std_logic_vector (3 downto 0);
-   Signal Out_7Seg1 : STD_LOGIC_VECTOR (6 downto 0);
-   Signal Out_7Seg2 : STD_LOGIC_VECTOR (6 downto 0);
+   Signal Out_7Seg : STD_LOGIC_VECTOR (6 downto 0);
    Signal Anode_7Seg : STD_LOGIC_VECTOR (3 downto 0);
    constant clock_period : time := 5 ns;
    
@@ -37,10 +34,8 @@ begin
                 Reset => Reset,
                 Zero => Zero,
                 LED_Out => LED_Out,
-                Out_7Seg1 => Out_7Seg1,
-                Anode_7Seg => Anode_7Seg,
-                Out_7Seg2 => Out_7Seg2,
-                TestClock => TestClock);
+                Out_7Seg => Out_7Seg,
+                Anode_7Seg => Anode_7Seg);
     
     clock_process : process
     begin
