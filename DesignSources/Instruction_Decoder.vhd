@@ -24,17 +24,25 @@ begin
     ImmediateVal <= Instruction (3 downto 0);
     JMPAddress <= Instruction (2 downto 0);
 
-    AddSubSelect <= '1' WHEN Instruction(11 downto 10) = "01" ELSE -- NEG Instruction
-                    '0';
+    AddSubSelect <= '1' WHEN 
+        Instruction(11 downto 10) = "01" 
+    ELSE -- NEG Instruction
+        '0';
     
-    LoadSelect <= '1' WHEN Instruction(11 downto 10) = "10" ELSE -- MOVL Instruction
-                    '0';
+    LoadSelect <= '1' WHEN 
+        Instruction(11 downto 10) = "10" 
+    ELSE -- MOVL Instruction
+        '0';
 
-    JMPFlag <= '1' WHEN Instruction(11 downto 10) = "11" and CheckJMP = "0000" ELSE -- NEG Instruction
-                '0';
+    JMPFlag <= '1' WHEN 
+        Instruction(11 downto 10) = "11" and CheckJMP = "0000" 
+    ELSE -- NEG Instruction
+        '0';
     
-    RegEnable <= "000" WHEN Instruction(11 downto 10) = "11" ELSE -- JZR Instruction
-                    Instruction(9 downto 7);
+    RegEnable <= "000" WHEN 
+        Instruction(11 downto 10) = "11" 
+    ELSE -- JZR Instruction
+         Instruction(9 downto 7);
 
 end Behavioral;
     
